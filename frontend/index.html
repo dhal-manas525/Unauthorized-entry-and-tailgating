@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart AccessGuard | Security Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <h2><i class="fas fa-shield-halved"></i> AccessGuard</h2>
+    <nav>
+        <a class="active" onclick="scrollToSection('dashboard')">
+            <i class="fas fa-chart-line"></i> Dashboard
+        </a>
+        <a onclick="scrollToSection('live-monitor')">
+            <i class="fas fa-video"></i> Live Monitor
+        </a>
+        <a onclick="scrollToSection('incidents')">
+            <i class="fas fa-triangle-exclamation"></i> Incidents
+        </a>
+        <a onclick="scrollToSection('settings')">
+            <i class="fas fa-gear"></i> Settings
+        </a>
+    </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<header class="topbar" id="dashboard">
+    <h1>Security Control Panel</h1>
+    <div class="system-status">
+        <span class="dot"></span> System Online
+    </div>
+</header>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stat-card">
+        <h4>Today's Access</h4>
+        <h2 id="today-access">0</h2>
+    </div>
+    <div class="stat-card danger">
+        <h4>Incidents</h4>
+        <h2 id="incidents-today">0</h2>
+    </div>
+    <div class="stat-card success">
+        <h4>Accuracy</h4>
+        <h2 id="accuracy-rate">99%</h2>
+    </div>
+</section>
+
+<!-- CAMERA -->
+<section class="panel" id="live-monitor">
+    <div class="panel-header">
+        <h3><i class="fas fa-video"></i> Live Camera Feed</h3>
+        <div>
+            <button onclick="startCamera()" class="btn primary">
+                <i class="fas fa-play"></i> Start
+            </button>
+            <button onclick="stopCamera()" class="btn danger">
+                <i class="fas fa-stop"></i> Stop
+            </button>
+            <button onclick="forceTailgating()" class="btn danger">
+    🚨 Simulate Tailgating
+</button>
+
+        </div>
+    </div>
+
+    <div class="camera-box">
+        <video id="webcam" autoplay playsinline></video>
+    </div>
+</section>
+
+<!-- LOGS -->
+<section class="panel">
+    <h3><i class="fas fa-list"></i> Detection Logs</h3>
+    <div id="detection-log" class="log-box"></div>
+</section>
+
+<!-- INCIDENTS -->
+<section class="panel" id="incidents">
+    <div class="panel-header">
+        <h3><i class="fas fa-bell"></i> Security Incidents</h3>
+        <button onclick="clearIncidents()" class="btn warning">
+            <i class="fas fa-trash"></i> Clear
+        </button>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Severity</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="incidents-body"></tbody>
+    </table>
+</section>
+
+<!-- SETTINGS (OPTIONAL / DEMO SECTION) -->
+<section class="panel" id="settings">
+    <h3><i class="fas fa-gear"></i> Settings</h3>
+    <p style="opacity:0.7">
+        Sound alerts, thresholds, and advanced configuration
+        can be managed here (future scope).
+    </p>
+</section>
+
+<footer>
+    Smart AccessGuard • AI Security System • Hackathon Project
+</footer>
+
+</main>
+
+<script src="script.js"></script>
+
+<!-- Tailgating Alert Sound -->
+<audio id="alertSound" preload="auto">
+    <source src="alert.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
